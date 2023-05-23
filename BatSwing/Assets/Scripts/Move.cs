@@ -17,7 +17,7 @@ public class Move : MonoBehaviour
 
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         if (Input.GetKeyDown(KeyCode.LeftArrow) && midT)
         {
@@ -26,18 +26,12 @@ public class Move : MonoBehaviour
             leftT = true;
             Debug.Log("Left");
         }
+
         if (Input.GetKeyDown(KeyCode.LeftArrow) && rightT)
         {
             gameObject.transform.position = midPos.transform.position;
-            midT = true;
             rightT = false;
-            Debug.Log("Mid");
-        }
-        if (Input.GetKeyDown(KeyCode.RightArrow) && leftT)
-        {
-            gameObject.transform.position = midPos.transform.position;
             midT = true;
-            leftT = false;
             Debug.Log("Mid");
         }
 
@@ -48,5 +42,14 @@ public class Move : MonoBehaviour
             rightT = true;
             Debug.Log("Right");
         }
+
+        if (Input.GetKeyDown(KeyCode.RightArrow) && leftT)
+        {
+            gameObject.transform.position = midPos.transform.position;
+            leftT = false;
+            midT = true;
+            Debug.Log("Mid");
+        }
+
     }
 }

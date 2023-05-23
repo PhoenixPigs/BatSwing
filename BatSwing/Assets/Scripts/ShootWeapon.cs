@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class ShootWeapon : MonoBehaviour
 {
+    public ParticleSystem Red;
+    public ParticleSystem Blue;
+    public ParticleSystem Green;
+    public ParticleSystem Purple;
+
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.E))
@@ -24,6 +30,18 @@ public class ShootWeapon : MonoBehaviour
                 Debug.Log("Miss");
             }
         }
+        if (Input.GetKey(KeyCode.E))
+        {
+            Red.Play();
+        }
+        if (Input.GetKeyUp(KeyCode.E))
+        {
+            Red.Stop();
+        }
+
+
+
+
         if (Input.GetKeyDown(KeyCode.W))
         {
             RaycastHit hit;
@@ -42,6 +60,14 @@ public class ShootWeapon : MonoBehaviour
                 Debug.Log("Miss");
             }
         }
+            if (Input.GetKey(KeyCode.W))
+            {
+                Purple.Play();
+            }
+            if (Input.GetKeyUp(KeyCode.W))
+            {
+                Purple.Stop();
+            }
         if (Input.GetKeyDown(KeyCode.Q))
         {
             RaycastHit hit;
@@ -60,6 +86,14 @@ public class ShootWeapon : MonoBehaviour
                 Debug.Log("Miss");
             }
         }
+            if (Input.GetKey(KeyCode.Q))
+            {
+                Blue.Play();
+            }
+            if (Input.GetKeyUp(KeyCode.Q))
+            {
+                Blue.Stop();
+            }
         if (Input.GetKeyDown(KeyCode.R))
         {
             RaycastHit hit;
@@ -78,5 +112,13 @@ public class ShootWeapon : MonoBehaviour
                 Debug.Log("Miss");
             }
         }
+            if (Input.GetKey(KeyCode.R))
+            {
+                Green.Play();
+            }
+            if (Input.GetKeyUp(KeyCode.R))
+            {
+                Green.Stop();
+            }
     }
 }
