@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: 85cf0b004bc4a654b9e501efcce47902, type: 2}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 2039a0ad0a9d05549928b70362f54902, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.57770085, g: 0.6152049, b: 0.60846514, a: 1}
+  m_IndirectSpecularColor: {r: 0.029087335, g: 0.0298977, b: 0.029896773, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -6231,6 +6231,7 @@ MonoBehaviour:
   Green: {fileID: 2103155678}
   Purple: {fileID: 694174943}
   death: {fileID: 1264448343}
+  _manager: {fileID: 1591144331}
 --- !u!136 &587025819
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -6329,9 +6330,12 @@ MonoBehaviour:
   leftPos: {fileID: 1694328688}
   rightPos: {fileID: 280883848}
   midPos: {fileID: 86225627}
+  lerpTime: 0.05
   leftT: 0
   rightT: 0
   midT: 1
+  playerAnim: {fileID: 0}
+  lerping: 0
 --- !u!1 &592944303
 GameObject:
   m_ObjectHideFlags: 0
@@ -6385,7 +6389,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 5f1f3a2543b84974b9a352b53a815d78, type: 2}
+  - {fileID: 2100000, guid: 1c2ff3344bc8cd7408b9c6741f8fa94f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -6488,7 +6492,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 6ab2132bca49f184288eaeafad4ea96c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6614a97e0e0b3d74299039865b5e5433, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -12784,7 +12788,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 6ab2132bca49f184288eaeafad4ea96c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6614a97e0e0b3d74299039865b5e5433, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -23600,9 +23604,10 @@ MonoBehaviour:
   strike2: {fileID: 1866054878}
   strike3: {fileID: 1088281510}
   score: {fileID: 838082287}
-  combo: {fileID: 0}
+  combo: {fileID: 40056633}
   scoreAm: 0
   comboAm: 0
+  comboMul: 0
 --- !u!65 &1591144332
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -24035,7 +24040,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 6ab2132bca49f184288eaeafad4ea96c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6614a97e0e0b3d74299039865b5e5433, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

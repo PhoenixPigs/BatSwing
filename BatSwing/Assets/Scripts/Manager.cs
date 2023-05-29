@@ -19,6 +19,8 @@ public class Manager : MonoBehaviour
     public int scoreAm;
     public int comboAm;
 
+    public int comboMul;
+
     private void Start()
     {
         strike1.SetActive(false);
@@ -36,6 +38,7 @@ public class Manager : MonoBehaviour
 
             strikeCount++;
             Destroy(other.gameObject);
+            comboAm = 0;
         }
     }
     private void Update()
@@ -58,6 +61,20 @@ public class Manager : MonoBehaviour
 
         }
 
+        if (comboAm >= 0 && comboAm < 10)
+        {
+            comboMul = 1;
+        }
+        if (comboAm >= 10 && comboAm < 50)
+        {
+            comboMul = 2;
+        }
+        if (comboAm >= 50)
+        {
+            comboMul = 3;
+        }
+
         score.text = "" + scoreAm;
+        combo.text = "COMBO: " + comboAm;
     }
 }

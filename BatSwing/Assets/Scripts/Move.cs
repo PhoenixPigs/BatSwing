@@ -10,10 +10,18 @@ public class Move : MonoBehaviour
     public Transform rightPos;
     public Transform midPos;
 
+    [SerializeField] float lerpTime = 1f; // how long do you want the move to take
 
     public bool leftT;
     public bool rightT;
     public bool midT;
+
+    public Animator playerAnim;
+
+
+    public bool lerping;
+
+
 
 
     // Update is called once per frame
@@ -21,7 +29,14 @@ public class Move : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.LeftArrow) && midT)
         {
-            gameObject.transform.position = leftPos.transform.position;
+            //playerAnim.SetBool("MidToRight", true);
+            //gameObject.transform.position = leftPos.transform.position;
+
+            lerping = true;
+            Vector3 startPos = gameObject.transform.position;
+            Vector3 endPos = leftPos.transform.position;
+
+            StartCoroutine(Lerping(startPos, endPos));
             midT = false;
             leftT = true;
             Debug.Log("Left");
@@ -29,7 +44,11 @@ public class Move : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.LeftArrow) && rightT)
         {
-            gameObject.transform.position = midPos.transform.position;
+            lerping = true;
+            Vector3 startPos = gameObject.transform.position;
+            Vector3 endPos = midPos.transform.position;
+
+            StartCoroutine(Lerping(startPos, endPos));
             rightT = false;
             midT = true;
             Debug.Log("Mid");
@@ -37,7 +56,11 @@ public class Move : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.RightArrow) && midT)
         {
-            gameObject.transform.position = rightPos.transform.position;
+            lerping = true;
+            Vector3 startPos = gameObject.transform.position;
+            Vector3 endPos = rightPos.transform.position;
+
+            StartCoroutine(Lerping(startPos, endPos));
             midT = false;
             rightT = true;
             Debug.Log("Right");
@@ -45,11 +68,41 @@ public class Move : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.RightArrow) && leftT)
         {
-            gameObject.transform.position = midPos.transform.position;
+            lerping = true;
+            Vector3 startPos = gameObject.transform.position;
+            Vector3 endPos = midPos.transform.position;
+
+            StartCoroutine(Lerping(startPos, endPos));
             leftT = false;
             midT = true;
             Debug.Log("Mid");
         }
 
     }
+
+    IEnumerator Lerping(Vector3 startLerpPos, Vector3 endLerpPos)
+    {
+        float time = 0;
+
+
+        while (time < lerpTime && lerping)
+        {
+
+            transform.position = Vector3.Lerp(startLerpPos, endLerpPos, time/lerpTime);
+            
+            yield return new WaitForEndOfFrame();
+
+            time += Time.deltaTime;
+        }
+        gameObject.transform.position = endLerpPos;
+        lerping = false;
+        //set transform to end position
+        // pos = endPos
+    }
+
+    //public void MidToRightFalse()
+    //{
+     //   playerAnim.SetBool("MidToRight", false);
+        
+    //}
 }

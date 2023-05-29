@@ -11,6 +11,8 @@ public class ShootWeapon : MonoBehaviour
 
     public ParticleSystem death;
 
+    public Manager _manager;
+
 
     void Update()
     {
@@ -25,10 +27,13 @@ public class ShootWeapon : MonoBehaviour
                 Debug.DrawRay(transform.position, transform.forward * hit.distance, Color.yellow);
                 Instantiate(death, hit.transform.position, Quaternion.identity);
                 Destroy(hit.transform.gameObject);
+                _manager.scoreAm = _manager.scoreAm + 100 * _manager.comboMul;
+                _manager.comboAm++;
             }
             if (Physics.Raycast(transform.position, transform.forward, out hit, Mathf.Infinity) && hit.transform.gameObject.tag == "Purple" || hit.transform.gameObject.tag == "Blue" || hit.transform.gameObject.tag == "Green")
             {
                 Debug.DrawRay(transform.position, transform.forward * hit.distance, Color.red);
+                _manager.comboAm = 0;
             }
             else
             {
@@ -52,10 +57,13 @@ public class ShootWeapon : MonoBehaviour
                 Debug.DrawRay(transform.position, transform.forward * hit.distance, Color.yellow);
                 Instantiate(death, hit.transform.position, Quaternion.identity);
                 Destroy(hit.transform.gameObject);
+                _manager.scoreAm = _manager.scoreAm + 100 * _manager.comboMul;
+                _manager.comboAm++;
             }
             if (Physics.Raycast(transform.position, transform.forward, out hit, Mathf.Infinity) && hit.transform.gameObject.tag == "Red" || hit.transform.gameObject.tag == "Blue" || hit.transform.gameObject.tag == "Green")
             {
                 Debug.DrawRay(transform.position, transform.forward * hit.distance, Color.red);
+                _manager.comboAm = 0;
             }
             else
             {
@@ -78,10 +86,13 @@ public class ShootWeapon : MonoBehaviour
                 Debug.DrawRay(transform.position, transform.forward * hit.distance, Color.yellow);
                 Instantiate(death, hit.transform.position, Quaternion.identity);
                 Destroy(hit.transform.gameObject);
+                _manager.scoreAm = _manager.scoreAm + 100 * _manager.comboMul;
+                _manager.comboAm++;
             }
             if (Physics.Raycast(transform.position, transform.forward, out hit, Mathf.Infinity) && hit.transform.gameObject.tag == "Red" || hit.transform.gameObject.tag == "Purple" || hit.transform.gameObject.tag == "Green")
             {
                 Debug.DrawRay(transform.position, transform.forward * hit.distance, Color.red);
+                _manager.comboAm = 0;
             }
             else
             {
@@ -105,10 +116,13 @@ public class ShootWeapon : MonoBehaviour
                 Debug.DrawRay(transform.position, transform.forward * hit.distance, Color.yellow);
                 Instantiate(death, hit.transform.position, Quaternion.identity);
                 Destroy(hit.transform.gameObject);
+                _manager.scoreAm = _manager.scoreAm + 100 * _manager.comboMul;
+                _manager.comboAm++;
             }
             if (Physics.Raycast(transform.position, transform.forward, out hit, Mathf.Infinity) && hit.transform.gameObject.tag == "Red" || hit.transform.gameObject.tag == "Blue" || hit.transform.gameObject.tag == "Purple")
             {
                 Debug.DrawRay(transform.position, transform.forward * hit.distance, Color.red);
+                _manager.comboAm = 0;
             }
             else
             {
