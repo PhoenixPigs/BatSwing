@@ -29,16 +29,19 @@ public class ShootWeapon : MonoBehaviour
                 Destroy(hit.transform.gameObject);
                 _manager.scoreAm = _manager.scoreAm + 100 * _manager.comboMul;
                 _manager.comboAm++;
+                _manager.sliderChange();
             }
             if (Physics.Raycast(transform.position, transform.forward, out hit, Mathf.Infinity) && hit.transform.gameObject.tag == "Purple" || hit.transform.gameObject.tag == "Blue" || hit.transform.gameObject.tag == "Green")
             {
                 Debug.DrawRay(transform.position, transform.forward * hit.distance, Color.red);
                 _manager.comboAm = 0;
+                _manager.sliderChange();
+
             }
             else
             {
                 Debug.DrawRay(transform.position, transform.forward * 1000, Color.white);
-                Debug.Log("Miss");
+
             }
 
         }
@@ -59,16 +62,18 @@ public class ShootWeapon : MonoBehaviour
                 Destroy(hit.transform.gameObject);
                 _manager.scoreAm = _manager.scoreAm + 100 * _manager.comboMul;
                 _manager.comboAm++;
+                _manager.sliderChange();
             }
             if (Physics.Raycast(transform.position, transform.forward, out hit, Mathf.Infinity) && hit.transform.gameObject.tag == "Red" || hit.transform.gameObject.tag == "Blue" || hit.transform.gameObject.tag == "Green")
             {
                 Debug.DrawRay(transform.position, transform.forward * hit.distance, Color.red);
                 _manager.comboAm = 0;
+                _manager.sliderChange();
             }
             else
             {
                 Debug.DrawRay(transform.position, transform.forward * 1000, Color.white);
-                Debug.Log("Miss");
+
             }
 
         }
@@ -88,16 +93,18 @@ public class ShootWeapon : MonoBehaviour
                 Destroy(hit.transform.gameObject);
                 _manager.scoreAm = _manager.scoreAm + 100 * _manager.comboMul;
                 _manager.comboAm++;
+                _manager.sliderChange();
             }
             if (Physics.Raycast(transform.position, transform.forward, out hit, Mathf.Infinity) && hit.transform.gameObject.tag == "Red" || hit.transform.gameObject.tag == "Purple" || hit.transform.gameObject.tag == "Green")
             {
                 Debug.DrawRay(transform.position, transform.forward * hit.distance, Color.red);
                 _manager.comboAm = 0;
+                _manager.sliderChange();
             }
             else
             {
                 Debug.DrawRay(transform.position, transform.forward * 1000, Color.white);
-                Debug.Log("Miss");
+
             }
 
         }
@@ -118,16 +125,18 @@ public class ShootWeapon : MonoBehaviour
                 Destroy(hit.transform.gameObject);
                 _manager.scoreAm = _manager.scoreAm + 100 * _manager.comboMul;
                 _manager.comboAm++;
+                _manager.sliderChange();
             }
             if (Physics.Raycast(transform.position, transform.forward, out hit, Mathf.Infinity) && hit.transform.gameObject.tag == "Red" || hit.transform.gameObject.tag == "Blue" || hit.transform.gameObject.tag == "Purple")
             {
                 Debug.DrawRay(transform.position, transform.forward * hit.distance, Color.red);
                 _manager.comboAm = 0;
+                _manager.sliderChange();
             }
             else
             {
                 Debug.DrawRay(transform.position, transform.forward * 1000, Color.white);
-                Debug.Log("Miss");
+
             }
 
         }
@@ -141,6 +150,6 @@ public class ShootWeapon : MonoBehaviour
         Green.Stop();
         Blue.Stop();
         Purple.Stop();
-        Debug.Log("AnimStop");
+
     }
 }

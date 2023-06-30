@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Manager : MonoBehaviour
 {
@@ -20,6 +21,16 @@ public class Manager : MonoBehaviour
     public int comboAm;
 
     public int comboMul;
+
+    float lerpSpeed;
+    public Slider comboBar;
+
+    public float comboAmF;
+    public float comboBarF;
+
+    float currentVelocity = 0;
+
+    public TMP_Text comboMultiplier;
 
     private void Start()
     {
@@ -39,10 +50,24 @@ public class Manager : MonoBehaviour
             strikeCount++;
             Destroy(other.gameObject);
             comboAm = 0;
+            
+            comboBar.maxValue = 10;
+            sliderChange();
         }
     }
+    public void sliderChange()
+    {
+        Debug.Log("Start");
+        comboBar.value = comboAm;
+        Debug.Log("change");
+    }
+
     private void Update()
     {
+        comboBarF = comboBar.value;
+        comboAmF = comboAm;
+        lerpSpeed = 3f * Time.deltaTime;
+
         if (strikeCount == 1)
         {
             strike1.SetActive(true);
@@ -55,26 +80,33 @@ public class Manager : MonoBehaviour
         {
             strike3.SetActive(true);
         }
-
         if (strikeCount >= 3)
         {
 
         }
-
         if (comboAm >= 0 && comboAm < 10)
         {
             comboMul = 1;
+            comboBar.minValue = 0;
+            comboBar.maxValue = 10;
         }
         if (comboAm >= 10 && comboAm < 50)
         {
             comboMul = 2;
+            comboBar.minValue = 10;
+            comboBar.maxValue = 40;
+            if (comboAm == 10)
+            {
+                comboBar.value = 0;
+            }
         }
         if (comboAm >= 50)
         {
             comboMul = 3;
         }
 
+
         score.text = "" + scoreAm;
-        combo.text = "COMBO: " + comboAm;
+        combo.text = "X" + comboMul;
     }
 }
