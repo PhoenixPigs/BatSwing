@@ -7,50 +7,25 @@ using UnityEngine.UI;
 
 public class Manager : MonoBehaviour
 {
-
+    [Header ("Strike")]
     public int strikeCount = 0;
-
-    public GameObject strike1;
-    public GameObject strike2;
-    public GameObject strike3;
-
-    public TMP_Text score;
-    public TMP_Text combo;
-
-    public int scoreAm;
-    public int comboAm;
-
-    public int comboMul;
-
-    public float lerpSpeed;
-    public Slider comboBar;
-
-    public float comboAmF;
-    public float comboBarF;
-
-    float currentVelocity = 0;
-
-    public TMP_Text comboMultiplier;
-
-    public Image strikeBar;
-
     public float strikeMax = 1f;
-    bool strikeLerp;
-    public float smoothTime;
-
-
     public float fillSpeed = 0.5f;
     private float targetProgress = 0;
+    public Image strikeBar;
 
+    [Header("Score")]
+    public int scoreAm;
+    public TMP_Text score;
 
-    private void Start()
-    {
-        strike1.SetActive(false);
-        strike2.SetActive(false);
-        strike3.SetActive(false);
-        strikeLerp = false;
+    [Header("Combo")]
+    public int comboAm;
+    public int comboMul;
+    public Slider comboBar;
+    public TMP_Text combo;
 
-    }
+    [Header("Camera")]
+    public ScreenShake _screenShake;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -67,16 +42,14 @@ public class Manager : MonoBehaviour
             comboBar.maxValue = 10;
             sliderChange();
             strikeBar.fillAmount = 0;
-            //strikeLerp = true;
+            StartCoroutine(_screenShake.Shake(.15f, .4f));
             incrementProgress(1f);
         }
     }
 
     public void sliderChange()
     {
-        Debug.Log("Start");
         comboBar.value = comboAm;
-        Debug.Log("change");
     }
 
     private void Update()
@@ -84,34 +57,9 @@ public class Manager : MonoBehaviour
         if (strikeBar.fillAmount < targetProgress)
         {
             strikeBar.fillAmount += fillSpeed * Time.deltaTime;
-        }
+        }   
 
-        if (strikeLerp)
-        {
-            strikeBar.fillAmount = Mathf.SmoothDamp(strikeBar.fillAmount, strikeMax, ref currentVelocity, smoothTime);
-            //strikeLerp = false;
-        }
-   
-        comboBarF = comboBar.value;
-        comboAmF = comboAm;
-        lerpSpeed = smoothTime * Time.deltaTime;
 
-        if (strikeCount == 1)
-        {
-            strike1.SetActive(true);
-        }
-        if (strikeCount == 2)
-        {
-            strike2.SetActive(true);
-        }
-        if (strikeCount == 3)
-        {
-            strike3.SetActive(true);
-        }
-        if (strikeCount >= 3)
-        {
-
-        }
         if (comboAm >= 0 && comboAm < 10)
         {
             comboMul = 1;
