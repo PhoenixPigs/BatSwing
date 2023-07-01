@@ -22,7 +22,7 @@ public class Manager : MonoBehaviour
 
     public int comboMul;
 
-    float lerpSpeed;
+    public float lerpSpeed;
     public Slider comboBar;
 
     public float comboAmF;
@@ -32,11 +32,24 @@ public class Manager : MonoBehaviour
 
     public TMP_Text comboMultiplier;
 
+    public Image strikeBar;
+
+    public float strikeMax = 1f;
+    bool strikeLerp;
+    public float smoothTime;
+
+
+    public float fillSpeed = 0.5f;
+    private float targetProgress = 0;
+
+
     private void Start()
     {
         strike1.SetActive(false);
         strike2.SetActive(false);
         strike3.SetActive(false);
+        strikeLerp = false;
+
     }
 
     private void OnTriggerEnter(Collider other)
@@ -53,8 +66,12 @@ public class Manager : MonoBehaviour
             
             comboBar.maxValue = 10;
             sliderChange();
+            strikeBar.fillAmount = 0;
+            //strikeLerp = true;
+            incrementProgress(1f);
         }
     }
+
     public void sliderChange()
     {
         Debug.Log("Start");
@@ -64,9 +81,20 @@ public class Manager : MonoBehaviour
 
     private void Update()
     {
+        if (strikeBar.fillAmount < targetProgress)
+        {
+            strikeBar.fillAmount += fillSpeed * Time.deltaTime;
+        }
+
+        if (strikeLerp)
+        {
+            strikeBar.fillAmount = Mathf.SmoothDamp(strikeBar.fillAmount, strikeMax, ref currentVelocity, smoothTime);
+            //strikeLerp = false;
+        }
+   
         comboBarF = comboBar.value;
         comboAmF = comboAm;
-        lerpSpeed = 3f * Time.deltaTime;
+        lerpSpeed = smoothTime * Time.deltaTime;
 
         if (strikeCount == 1)
         {
@@ -108,5 +136,9 @@ public class Manager : MonoBehaviour
 
         score.text = "" + scoreAm;
         combo.text = "X" + comboMul;
+    }
+    void incrementProgress(float newProgress)
+    {
+        targetProgress = strikeBar.fillAmount + newProgress;
     }
 }
