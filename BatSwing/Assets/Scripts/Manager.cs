@@ -13,6 +13,7 @@ public class Manager : MonoBehaviour
     public float fillSpeed = 0.5f;
     private float targetProgress = 0;
     public Image strikeBar;
+    public AudioSource death;
 
     [Header("Score")]
     public int scoreAm;
@@ -38,7 +39,7 @@ public class Manager : MonoBehaviour
             strikeCount++;
             Destroy(other.gameObject);
             comboAm = 0;
-            
+            death.Play();
             comboBar.maxValue = 10;
             sliderChange();
             strikeBar.fillAmount = 0;

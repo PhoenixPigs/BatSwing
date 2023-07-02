@@ -11,14 +11,20 @@ public class ShootWeapon : MonoBehaviour
 
     public ParticleSystem death;
 
+    public AudioSource shoot;
+
+    public float magniturd;
+    public float longth;
+
     public Manager _manager;
 
-
+    
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
             Red.Play();
+            shoot.Play();
             StartCoroutine(AnimStop());
 
             RaycastHit hit;
@@ -52,6 +58,7 @@ public class ShootWeapon : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.W))
         {
             Purple.Play();
+            shoot.Play();
             StartCoroutine(AnimStop());
 
             RaycastHit hit;
@@ -83,6 +90,7 @@ public class ShootWeapon : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Q))
         {
             Blue.Play();
+            shoot.Play();
             StartCoroutine(AnimStop());
 
             RaycastHit hit;
@@ -115,6 +123,7 @@ public class ShootWeapon : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R))
         {
             Green.Play();
+            shoot.Play();
             StartCoroutine(AnimStop());
 
             RaycastHit hit;
