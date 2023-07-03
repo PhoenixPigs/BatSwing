@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class Manager : MonoBehaviour
 {
-    [Header ("Strike")]
+    [Header("Strike")]
     public int strikeCount = 0;
     public float strikeMax = 1f;
     public float fillSpeed = 0.5f;
@@ -58,7 +58,7 @@ public class Manager : MonoBehaviour
         if (strikeBar.fillAmount < targetProgress)
         {
             strikeBar.fillAmount += fillSpeed * Time.deltaTime;
-        }   
+        }
 
 
         if (comboAm >= 0 && comboAm < 10)
