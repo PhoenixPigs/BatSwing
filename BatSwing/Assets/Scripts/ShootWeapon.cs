@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ShootWeapon : MonoBehaviour
 {
@@ -15,6 +16,8 @@ public class ShootWeapon : MonoBehaviour
 
     public float magniturd;
     public float longth;
+
+    public GameObject points;
 
     public Manager _manager;
 
@@ -36,11 +39,15 @@ public class ShootWeapon : MonoBehaviour
                 _manager.scoreAm = _manager.scoreAm + 100 * _manager.comboMul;
                 _manager.comboAm++;
                 _manager.sliderChange();
+                GameObject pointz = Instantiate(points, hit.transform.position, Quaternion.identity) as GameObject;
+                pointz.transform.GetChild(0).GetComponent<TMPro.TextMeshPro>().text = "+" + 100 * _manager.comboMul;
             }
             if (Physics.Raycast(transform.position, transform.forward, out hit, Mathf.Infinity) && hit.transform.gameObject.tag == "Purple" || hit.transform.gameObject.tag == "Blue" || hit.transform.gameObject.tag == "Green")
             {
                 Debug.DrawRay(transform.position, transform.forward * hit.distance, Color.red);
                 _manager.comboAm = 0;
+                _manager.shaderOff();
+                _manager.comboBar.maxValue = 10;
                 _manager.sliderChange();
 
             }
@@ -70,11 +77,15 @@ public class ShootWeapon : MonoBehaviour
                 _manager.scoreAm = _manager.scoreAm + 100 * _manager.comboMul;
                 _manager.comboAm++;
                 _manager.sliderChange();
+                GameObject pointz = Instantiate(points, hit.transform.position, Quaternion.identity) as GameObject;
+                pointz.transform.GetChild(0).GetComponent<TMPro.TextMeshPro>().text = "+" + 100 * _manager.comboMul;
             }
             if (Physics.Raycast(transform.position, transform.forward, out hit, Mathf.Infinity) && hit.transform.gameObject.tag == "Red" || hit.transform.gameObject.tag == "Blue" || hit.transform.gameObject.tag == "Green")
             {
                 Debug.DrawRay(transform.position, transform.forward * hit.distance, Color.red);
                 _manager.comboAm = 0;
+                _manager.shaderOff();
+                _manager.comboBar.maxValue = 10;
                 _manager.sliderChange();
             }
             else
@@ -102,11 +113,15 @@ public class ShootWeapon : MonoBehaviour
                 _manager.scoreAm = _manager.scoreAm + 100 * _manager.comboMul;
                 _manager.comboAm++;
                 _manager.sliderChange();
+                GameObject pointz = Instantiate(points, hit.transform.position, Quaternion.identity) as GameObject;
+                pointz.transform.GetChild(0).GetComponent<TMPro.TextMeshPro>().text = "+" + 100 * _manager.comboMul;
             }
             if (Physics.Raycast(transform.position, transform.forward, out hit, Mathf.Infinity) && hit.transform.gameObject.tag == "Red" || hit.transform.gameObject.tag == "Purple" || hit.transform.gameObject.tag == "Green")
             {
                 Debug.DrawRay(transform.position, transform.forward * hit.distance, Color.red);
                 _manager.comboAm = 0;
+                _manager.shaderOff();
+                _manager.comboBar.maxValue = 10;
                 _manager.sliderChange();
             }
             else
@@ -135,11 +150,15 @@ public class ShootWeapon : MonoBehaviour
                 _manager.scoreAm = _manager.scoreAm + 100 * _manager.comboMul;
                 _manager.comboAm++;
                 _manager.sliderChange();
+                GameObject pointz = Instantiate(points, hit.transform.position, Quaternion.identity) as GameObject;
+                pointz.transform.GetChild(0).GetComponent<TMPro.TextMeshPro>().text = "+" + 100 * _manager.comboMul;
             }
             if (Physics.Raycast(transform.position, transform.forward, out hit, Mathf.Infinity) && hit.transform.gameObject.tag == "Red" || hit.transform.gameObject.tag == "Blue" || hit.transform.gameObject.tag == "Purple")
             {
                 Debug.DrawRay(transform.position, transform.forward * hit.distance, Color.red);
                 _manager.comboAm = 0;
+                _manager.shaderOff();
+                _manager.comboBar.maxValue = 10;
                 _manager.sliderChange();
             }
             else

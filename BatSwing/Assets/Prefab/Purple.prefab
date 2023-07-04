@@ -238,7 +238,6 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: f4307094cf46e82499e27a39b72267ed, type: 2}
-  - {fileID: 2100000, guid: 1e2693cc453c7ba49a7481b9e68c3224, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -285,7 +284,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ecbec68cc128ac7408bca0a100c7d67d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 40
+  speed: 35
 --- !u!95 &921920854506018263
 Animator:
   serializedVersion: 4
