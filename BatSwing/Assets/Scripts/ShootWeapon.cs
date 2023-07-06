@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Cinemachine;
 
 public class ShootWeapon : MonoBehaviour
 {
@@ -20,8 +21,13 @@ public class ShootWeapon : MonoBehaviour
     public GameObject points;
 
     public Manager _manager;
+    private CinemachineImpulseSource impulseSource;
 
-    
+    private void Start()
+    {
+        impulseSource = GetComponent<CinemachineImpulseSource>();
+
+    }
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.E))
@@ -29,16 +35,32 @@ public class ShootWeapon : MonoBehaviour
             Red.Play();
             shoot.Play();
             StartCoroutine(AnimStop());
+            ScreenShakeManager.instance.CameraShake(impulseSource);
 
             RaycastHit hit;
             if (Physics.Raycast(transform.position, transform.forward, out hit, Mathf.Infinity) && hit.transform.gameObject.tag == "Red")
             {
+                CubeMove cubeHit = hit.transform.gameObject.GetComponent<CubeMove>();
+
                 Debug.DrawRay(transform.position, transform.forward * hit.distance, Color.yellow);
+
                 Instantiate(death, hit.transform.position, Quaternion.identity);
                 Destroy(hit.transform.gameObject);
-                _manager.scoreAm = _manager.scoreAm + 100 * _manager.comboMul;
+
+                if (cubeHit.inTarget == true)
+                {
+
                 _manager.comboAm++;
                 _manager.sliderChange();
+                }
+                else
+                {
+                    _manager.comboAm = 0;
+                    _manager.shaderOff();
+                    _manager.comboBar.maxValue = 10;
+                    _manager.sliderChange();
+                }
+                _manager.scoreAm = _manager.scoreAm + 100 * _manager.comboMul;
                 GameObject pointz = Instantiate(points, hit.transform.position, Quaternion.identity) as GameObject;
                 pointz.transform.GetChild(0).GetComponent<TMPro.TextMeshPro>().text = "+" + 100 * _manager.comboMul;
             }
@@ -67,16 +89,32 @@ public class ShootWeapon : MonoBehaviour
             Purple.Play();
             shoot.Play();
             StartCoroutine(AnimStop());
+            ScreenShakeManager.instance.CameraShake(impulseSource);
 
             RaycastHit hit;
             if (Physics.Raycast(transform.position, transform.forward, out hit, Mathf.Infinity) && hit.transform.gameObject.tag == "Purple")
             {
+                CubeMove cubeHit = hit.transform.gameObject.GetComponent<CubeMove>();
+
                 Debug.DrawRay(transform.position, transform.forward * hit.distance, Color.yellow);
+
                 Instantiate(death, hit.transform.position, Quaternion.identity);
                 Destroy(hit.transform.gameObject);
+
+                if (cubeHit.inTarget == true)
+                {
+
+                    _manager.comboAm++;
+                    _manager.sliderChange();
+                }
+                else
+                {
+                    _manager.comboAm = 0;
+                    _manager.shaderOff();
+                    _manager.comboBar.maxValue = 10;
+                    _manager.sliderChange();
+                }
                 _manager.scoreAm = _manager.scoreAm + 100 * _manager.comboMul;
-                _manager.comboAm++;
-                _manager.sliderChange();
                 GameObject pointz = Instantiate(points, hit.transform.position, Quaternion.identity) as GameObject;
                 pointz.transform.GetChild(0).GetComponent<TMPro.TextMeshPro>().text = "+" + 100 * _manager.comboMul;
             }
@@ -103,16 +141,32 @@ public class ShootWeapon : MonoBehaviour
             Blue.Play();
             shoot.Play();
             StartCoroutine(AnimStop());
+            ScreenShakeManager.instance.CameraShake(impulseSource);
 
             RaycastHit hit;
             if (Physics.Raycast(transform.position, transform.forward, out hit, Mathf.Infinity) && hit.transform.gameObject.tag == "Blue")
             {
+                CubeMove cubeHit = hit.transform.gameObject.GetComponent<CubeMove>();
+
                 Debug.DrawRay(transform.position, transform.forward * hit.distance, Color.yellow);
+
                 Instantiate(death, hit.transform.position, Quaternion.identity);
                 Destroy(hit.transform.gameObject);
+
+                if (cubeHit.inTarget == true)
+                {
+
+                    _manager.comboAm++;
+                    _manager.sliderChange();
+                }
+                else
+                {
+                    _manager.comboAm = 0;
+                    _manager.shaderOff();
+                    _manager.comboBar.maxValue = 10;
+                    _manager.sliderChange();
+                }
                 _manager.scoreAm = _manager.scoreAm + 100 * _manager.comboMul;
-                _manager.comboAm++;
-                _manager.sliderChange();
                 GameObject pointz = Instantiate(points, hit.transform.position, Quaternion.identity) as GameObject;
                 pointz.transform.GetChild(0).GetComponent<TMPro.TextMeshPro>().text = "+" + 100 * _manager.comboMul;
             }
@@ -140,16 +194,32 @@ public class ShootWeapon : MonoBehaviour
             Green.Play();
             shoot.Play();
             StartCoroutine(AnimStop());
+            ScreenShakeManager.instance.CameraShake(impulseSource);
 
             RaycastHit hit;
             if (Physics.Raycast(transform.position, transform.forward, out hit, Mathf.Infinity) && hit.transform.gameObject.tag == "Green")
             {
+                CubeMove cubeHit = hit.transform.gameObject.GetComponent<CubeMove>();
+
                 Debug.DrawRay(transform.position, transform.forward * hit.distance, Color.yellow);
+
                 Instantiate(death, hit.transform.position, Quaternion.identity);
                 Destroy(hit.transform.gameObject);
-                _manager.scoreAm = _manager.scoreAm + 100 * _manager.comboMul;
+
+                if (cubeHit.inTarget == true)
+                {
+
                 _manager.comboAm++;
                 _manager.sliderChange();
+                }
+                else
+                {
+                    _manager.comboAm = 0;
+                    _manager.shaderOff();
+                    _manager.comboBar.maxValue = 10;
+                    _manager.sliderChange();
+                }
+                _manager.scoreAm = _manager.scoreAm + 100 * _manager.comboMul;
                 GameObject pointz = Instantiate(points, hit.transform.position, Quaternion.identity) as GameObject;
                 pointz.transform.GetChild(0).GetComponent<TMPro.TextMeshPro>().text = "+" + 100 * _manager.comboMul;
             }

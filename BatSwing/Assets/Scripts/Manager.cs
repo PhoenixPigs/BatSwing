@@ -4,6 +4,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using Cinemachine;
 
 public class Manager : MonoBehaviour
 {
@@ -26,9 +27,12 @@ public class Manager : MonoBehaviour
     public Material rainbowShader;
     public Image comboMa;
 
-    [Header("Camera")]
-    public ScreenShake _screenShake;
+    CinemachineImpulseSource impulseSource;
 
+    private void Start()
+    {
+        impulseSource = GetComponent<CinemachineImpulseSource>();
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.transform.gameObject.tag == "Red" || other.transform.gameObject.tag == "Green" || other.transform.gameObject.tag == "Blue" || other.transform.gameObject.tag == "Purple")
@@ -42,10 +46,9 @@ public class Manager : MonoBehaviour
             comboBar.maxValue = 10;
             comboBar.value = 0;
             sliderChange();
-
+            ScreenShakeManager.instance.CameraShake(impulseSource);
             death.Play();
             strikeBar.fillAmount = 0;
-            StartCoroutine(_screenShake.Shake(.15f, .4f));
             incrementProgress(1f);
         }
     }

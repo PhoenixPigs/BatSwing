@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
+using UnityEngine.VFX;
 
 public class Move : MonoBehaviour
 {
@@ -18,9 +19,18 @@ public class Move : MonoBehaviour
 
     public Animator playerAnim;
 
+    public VisualEffect IsmokeLeft;
+    public VisualEffect IsmokeRight;
+    public VisualEffect OsmokeLeft;
+    public VisualEffect OsmokeRight;
+
 
     public bool lerping;
 
+    private void Start()
+    {
+
+    }
 
 
 
@@ -35,6 +45,7 @@ public class Move : MonoBehaviour
             lerping = true;
             Vector3 startPos = gameObject.transform.position;
             Vector3 endPos = leftPos.transform.position;
+            IsmokeLeft.Play();
 
             StartCoroutine(Lerping(startPos, endPos));
             midT = false;
@@ -47,6 +58,7 @@ public class Move : MonoBehaviour
             lerping = true;
             Vector3 startPos = gameObject.transform.position;
             Vector3 endPos = midPos.transform.position;
+            OsmokeLeft.Play();
 
             StartCoroutine(Lerping(startPos, endPos));
             rightT = false;
@@ -59,6 +71,7 @@ public class Move : MonoBehaviour
             lerping = true;
             Vector3 startPos = gameObject.transform.position;
             Vector3 endPos = rightPos.transform.position;
+            IsmokeRight.Play();
 
             StartCoroutine(Lerping(startPos, endPos));
             midT = false;
@@ -71,6 +84,7 @@ public class Move : MonoBehaviour
             lerping = true;
             Vector3 startPos = gameObject.transform.position;
             Vector3 endPos = midPos.transform.position;
+            OsmokeRight.Play();
 
             StartCoroutine(Lerping(startPos, endPos));
             leftT = false;
