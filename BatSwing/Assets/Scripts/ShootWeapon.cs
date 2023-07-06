@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Cinemachine;
+using UnityEngine.VFX;
 
 public class ShootWeapon : MonoBehaviour
 {
-    public ParticleSystem Red;
-    public ParticleSystem Blue;
-    public ParticleSystem Green;
-    public ParticleSystem Purple;
+    public VisualEffect Red;
+    public VisualEffect Blue;
+    public VisualEffect Green;
+    public VisualEffect Purple;
 
     public ParticleSystem death;
 
@@ -34,7 +35,7 @@ public class ShootWeapon : MonoBehaviour
         {
             Red.Play();
             shoot.Play();
-            StartCoroutine(AnimStop());
+            //StartCoroutine(AnimStop());
             ScreenShakeManager.instance.CameraShake(impulseSource);
 
             RaycastHit hit;
@@ -88,7 +89,7 @@ public class ShootWeapon : MonoBehaviour
         {
             Purple.Play();
             shoot.Play();
-            StartCoroutine(AnimStop());
+            //StartCoroutine(AnimStop());
             ScreenShakeManager.instance.CameraShake(impulseSource);
 
             RaycastHit hit;
@@ -140,7 +141,7 @@ public class ShootWeapon : MonoBehaviour
         {
             Blue.Play();
             shoot.Play();
-            StartCoroutine(AnimStop());
+            //StartCoroutine(AnimStop());
             ScreenShakeManager.instance.CameraShake(impulseSource);
 
             RaycastHit hit;
@@ -193,7 +194,7 @@ public class ShootWeapon : MonoBehaviour
         {
             Green.Play();
             shoot.Play();
-            StartCoroutine(AnimStop());
+            //StartCoroutine(AnimStop());
             ScreenShakeManager.instance.CameraShake(impulseSource);
 
             RaycastHit hit;
