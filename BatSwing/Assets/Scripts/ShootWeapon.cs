@@ -7,18 +7,25 @@ using UnityEngine.VFX;
 
 public class ShootWeapon : MonoBehaviour
 {
+    [Header("ShootEffect")]
     public VisualEffect Red;
     public VisualEffect Blue;
     public VisualEffect Green;
     public VisualEffect Purple;
 
-    public ParticleSystem death;
-
+    [Header("Explosion")]
+    public ParticleSystem greenSpark;
+    public ParticleSystem redSpark;
+    public ParticleSystem purpleSpark;
+    public ParticleSystem blueSpark;
+    [Header(" ")]
+    public VisualEffect greenExplosion;
+    public VisualEffect redExplosion;
+    public VisualEffect purpleExplosion;
+    public VisualEffect blueExplosion;
+    [Header("Audio")]
     public AudioSource shoot;
-
-    public float magniturd;
-    public float longth;
-
+    [Header("Points")]
     public GameObject points;
 
     public Manager _manager;
@@ -45,8 +52,11 @@ public class ShootWeapon : MonoBehaviour
 
                 Debug.DrawRay(transform.position, transform.forward * hit.distance, Color.yellow);
 
-                Instantiate(death, hit.transform.position, Quaternion.identity);
+                ParticleSystem RedSpark = Instantiate(redSpark, hit.transform.position, Quaternion.identity);
+                VisualEffect RedExplosion = Instantiate(redExplosion, hit.transform.position, Quaternion.identity);
                 Destroy(hit.transform.gameObject);
+                Destroy(RedSpark, 1);
+                Destroy(RedExplosion, 1);
 
                 if (cubeHit.inTarget == true)
                 {
@@ -99,8 +109,11 @@ public class ShootWeapon : MonoBehaviour
 
                 Debug.DrawRay(transform.position, transform.forward * hit.distance, Color.yellow);
 
-                Instantiate(death, hit.transform.position, Quaternion.identity);
+                ParticleSystem PurpleSpark = Instantiate(purpleSpark, hit.transform.position, Quaternion.identity);
+                VisualEffect PurpleExplosion = Instantiate(purpleExplosion, hit.transform.position, Quaternion.identity);
                 Destroy(hit.transform.gameObject);
+                Destroy(PurpleSpark, 1);
+                Destroy(PurpleExplosion, 1);
 
                 if (cubeHit.inTarget == true)
                 {
@@ -151,8 +164,12 @@ public class ShootWeapon : MonoBehaviour
 
                 Debug.DrawRay(transform.position, transform.forward * hit.distance, Color.yellow);
 
-                Instantiate(death, hit.transform.position, Quaternion.identity);
+                ParticleSystem BlueSpark = Instantiate(blueSpark, hit.transform.position, Quaternion.identity);
+                VisualEffect BlueExplosion = Instantiate(blueExplosion, hit.transform.position, Quaternion.identity);
                 Destroy(hit.transform.gameObject);
+                Destroy(BlueSpark, 1);
+                Destroy(BlueExplosion, 1);
+
 
                 if (cubeHit.inTarget == true)
                 {
@@ -204,7 +221,10 @@ public class ShootWeapon : MonoBehaviour
 
                 Debug.DrawRay(transform.position, transform.forward * hit.distance, Color.yellow);
 
-                Instantiate(death, hit.transform.position, Quaternion.identity);
+                ParticleSystem GreenSpark = Instantiate(greenSpark, hit.transform.position, Quaternion.identity);
+                VisualEffect GreenExplosion = Instantiate(greenExplosion, hit.transform.position, Quaternion.identity);
+                Destroy(GreenExplosion, 1);
+                Destroy(GreenSpark, 1);
                 Destroy(hit.transform.gameObject);
 
                 if (cubeHit.inTarget == true)
