@@ -24,7 +24,16 @@ public class ShootWeapon : MonoBehaviour
     public VisualEffect purpleExplosion;
     public VisualEffect blueExplosion;
     [Header("Audio")]
-    public AudioSource shoot;
+    public AudioClip shoot;
+    public AudioSource shootSource;
+    private float pitchF = 0;
+
+    [Range(0.1f, 0.5f)]
+    public float volume = 0.2f;
+    [Range(0.1f, 0.5f)]
+    public float pitch = 0.2f;
+
+
     [Header("Points")]
     public GameObject points;
 
@@ -41,8 +50,16 @@ public class ShootWeapon : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E))
         {
             Red.Play();
-            shoot.Play();
-            //StartCoroutine(AnimStop());
+
+            shootSource.clip = shoot;
+            shootSource.volume = Random.Range(1 - volume, 1);
+            shootSource.pitch = 0 + pitchF;
+            shootSource.PlayOneShot(shootSource.clip);
+            if(pitchF < 1.5f)
+            {
+            pitchF = pitchF + 0.1f;
+            }
+
             ScreenShakeManager.instance.CameraShake(impulseSource);
 
             RaycastHit hit;
@@ -98,8 +115,10 @@ public class ShootWeapon : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.W))
         {
             Purple.Play();
-            shoot.Play();
-            //StartCoroutine(AnimStop());
+            shootSource.clip = shoot;
+            shootSource.volume = Random.Range(1 - volume, 1);
+            shootSource.pitch = Random.Range(1 - pitch, 1 + pitch);
+            shootSource.PlayOneShot(shootSource.clip);
             ScreenShakeManager.instance.CameraShake(impulseSource);
 
             RaycastHit hit;
@@ -153,8 +172,10 @@ public class ShootWeapon : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Q))
         {
             Blue.Play();
-            shoot.Play();
-            //StartCoroutine(AnimStop());
+            shootSource.clip = shoot;
+            shootSource.volume = Random.Range(1 - volume, 1);
+            shootSource.pitch = Random.Range(1 - pitch, 1 + pitch);
+            shootSource.PlayOneShot(shootSource.clip);
             ScreenShakeManager.instance.CameraShake(impulseSource);
 
             RaycastHit hit;
@@ -210,8 +231,10 @@ public class ShootWeapon : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R))
         {
             Green.Play();
-            shoot.Play();
-            //StartCoroutine(AnimStop());
+            shootSource.clip = shoot;
+            shootSource.volume = Random.Range(1 - volume, 1);
+            shootSource.pitch = Random.Range(1 - pitch, 1 + pitch);
+            shootSource.PlayOneShot(shootSource.clip);
             ScreenShakeManager.instance.CameraShake(impulseSource);
 
             RaycastHit hit;
@@ -259,16 +282,6 @@ public class ShootWeapon : MonoBehaviour
             }
 
         }
-
-    }
-
-    IEnumerator AnimStop()
-    {
-        yield return new WaitForSeconds(0.1f);
-        Red.Stop();
-        Green.Stop();
-        Blue.Stop();
-        Purple.Stop();
 
     }
 }
