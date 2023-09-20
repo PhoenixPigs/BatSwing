@@ -16,8 +16,6 @@ public class Distance : MonoBehaviour
     public Material green;
     public Material white;
 
-    public Manager _manager;
-
     // Update is called once per frame
     void FixedUpdate()
     {

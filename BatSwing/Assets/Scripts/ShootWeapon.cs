@@ -12,6 +12,7 @@ public class ShootWeapon : MonoBehaviour
     public VisualEffect Blue;
     public VisualEffect Green;
     public VisualEffect Purple;
+    public Animator canti;
 
     [Header("Explosion")]
     public ParticleSystem greenSpark;
@@ -52,13 +53,14 @@ public class ShootWeapon : MonoBehaviour
             Red.Play();
 
             shootSource.clip = shoot;
-            shootSource.volume = Random.Range(1 - volume, 1);
-            shootSource.pitch = 0 + pitchF;
+            //shootSource.volume = Random.Range(1 - volume, 1);
+            //shootSource.pitch = 0 + pitchF;
             shootSource.PlayOneShot(shootSource.clip);
             if(pitchF < 1.5f)
             {
             pitchF = pitchF + 0.1f;
             }
+            canti.SetTrigger("Shoot");
 
             ScreenShakeManager.instance.CameraShake(impulseSource);
 
@@ -116,11 +118,11 @@ public class ShootWeapon : MonoBehaviour
         {
             Purple.Play();
             shootSource.clip = shoot;
-            shootSource.volume = Random.Range(1 - volume, 1);
-            shootSource.pitch = Random.Range(1 - pitch, 1 + pitch);
+            //shootSource.volume = Random.Range(1 - volume, 1);
+            //shootSource.pitch = Random.Range(1 - pitch, 1 + pitch);
             shootSource.PlayOneShot(shootSource.clip);
             ScreenShakeManager.instance.CameraShake(impulseSource);
-
+            canti.SetTrigger("Shoot");
             RaycastHit hit;
             if (Physics.Raycast(transform.position, transform.forward, out hit, Mathf.Infinity) && hit.transform.gameObject.tag == "Purple")
             {
@@ -173,11 +175,11 @@ public class ShootWeapon : MonoBehaviour
         {
             Blue.Play();
             shootSource.clip = shoot;
-            shootSource.volume = Random.Range(1 - volume, 1);
-            shootSource.pitch = Random.Range(1 - pitch, 1 + pitch);
+            //shootSource.volume = Random.Range(1 - volume, 1);
+            //shootSource.pitch = Random.Range(1 - pitch, 1 + pitch);
             shootSource.PlayOneShot(shootSource.clip);
             ScreenShakeManager.instance.CameraShake(impulseSource);
-
+            canti.SetTrigger("Shoot");
             RaycastHit hit;
             if (Physics.Raycast(transform.position, transform.forward, out hit, Mathf.Infinity) && hit.transform.gameObject.tag == "Blue")
             {
@@ -232,11 +234,11 @@ public class ShootWeapon : MonoBehaviour
         {
             Green.Play();
             shootSource.clip = shoot;
-            shootSource.volume = Random.Range(1 - volume, 1);
-            shootSource.pitch = Random.Range(1 - pitch, 1 + pitch);
+            //shootSource.volume = Random.Range(1 - volume, 1);
+            //shootSource.pitch = Random.Range(1 - pitch, 1 + pitch);
             shootSource.PlayOneShot(shootSource.clip);
             ScreenShakeManager.instance.CameraShake(impulseSource);
-
+            canti.SetTrigger("Shoot");
             RaycastHit hit;
             if (Physics.Raycast(transform.position, transform.forward, out hit, Mathf.Infinity) && hit.transform.gameObject.tag == "Green")
             {
