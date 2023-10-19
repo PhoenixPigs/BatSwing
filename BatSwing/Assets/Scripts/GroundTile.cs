@@ -8,6 +8,11 @@ public class GroundTile : MonoBehaviour
     [SerializeField] FloorScroll _floorScroll;
 
     // Start is called before the first frame update
+   // public Pause _pause;
+   // private void Awake()
+   // {
+   //     _pause = FindObjectOfType<Pause>();
+    //}
     void Start()
     {
         _floorScroll = GameObject.FindObjectOfType<FloorScroll>();
@@ -35,6 +40,7 @@ public class GroundTile : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+   //         if (_pause.GetIsPaused()) { return; }
         
     }
 }

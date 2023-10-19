@@ -9,6 +9,12 @@ public class PlayerMove : MonoBehaviour
     public float lerpDuration = 40;
     public float startValue = 10;
     public float endValue = 50;
+
+    //public Pause _pause;
+    //private void Awake()
+    //{
+    //    _pause = FindObjectOfType<Pause>();
+   // }
     void Start()
     {
         StartCoroutine(Lerp());
@@ -27,7 +33,8 @@ public class PlayerMove : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
+    {        
+       // if (_pause.GetIsPaused()) { return; }
         transform.Translate(Vector3.forward * Time.deltaTime * moveSpeed, Space.World);
     }
 }

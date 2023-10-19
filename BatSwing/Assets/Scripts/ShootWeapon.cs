@@ -39,7 +39,12 @@ public class ShootWeapon : MonoBehaviour
     public GameObject points;
 
     public Manager _manager;
+   // public Pause _pause;
     private CinemachineImpulseSource impulseSource;
+    //private void Awake()
+    //{
+    //    _pause = FindObjectOfType<Pause>();
+    //}
 
     private void Start()
     {
@@ -48,6 +53,7 @@ public class ShootWeapon : MonoBehaviour
     }
     void Update()
     {
+        //if (_pause.GetIsPaused()) { return; }
         if (Input.GetKeyDown(KeyCode.E))
         {
             Red.Play();

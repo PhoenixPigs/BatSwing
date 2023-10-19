@@ -11,7 +11,16 @@ public class SpawnBlocks : MonoBehaviour
     public int var1;
     public int var2;
 
-    // Update is called once per frame
+  //  public Pause _pause;
+    private void Awake()
+    {
+    //    _pause = FindObjectOfType<Pause>();
+    }
+
+    void Update()
+    {
+    //        if (_pause.GetIsPaused()) { return; }
+    }
     void Start()
     {
         StartCoroutine(SpawnTimer());

@@ -8,10 +8,16 @@ public class FloorScroll : MonoBehaviour
     public GameObject groundTile;
     public Vector3 nextSpawnPoint;
     public Transform spawnPo;
+    //public Pause _pause;
     private void Awake()
     {
+   //     _pause = FindObjectOfType<Pause>();
         nextSpawnPoint = new Vector3(0, 0, gameObject.transform.position.z + 200);
         
+    }
+    private void Update()
+    {
+    //        if (_pause.GetIsPaused()) { return; }
     }
     public void SpawnTile()
     {

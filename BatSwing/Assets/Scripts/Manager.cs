@@ -5,6 +5,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using Cinemachine;
+using UnityEngine.SceneManagement;
 
 public class Manager : MonoBehaviour
 {
@@ -13,7 +14,8 @@ public class Manager : MonoBehaviour
     public float fillSpeed = 0.5f;
     private float targetProgress = 0;
     public Image strikeBar;
-    public AudioSource death;
+    public AudioSource deathSound;
+    public AudioSource hitSound;
 
     [Header("Score")]
     public int scoreAm;
@@ -28,14 +30,32 @@ public class Manager : MonoBehaviour
     public Image comboMa;
 
     CinemachineImpulseSource impulseSource;
-
+    //public Pause _pause;
+    private void Awake()
+    {
+      //  _pause = FindObjectOfType<Pause>();
+    }
     private void Start()
     {
         impulseSource = GetComponent<CinemachineImpulseSource>();
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.transform.gameObject.tag == "Red" || other.transform.gameObject.tag == "Green" || other.transform.gameObject.tag == "Blue" || other.transform.gameObject.tag == "Purple")
+        if (strikeBar.fillAmount < 1 && other.transform.gameObject.tag == "Red" || strikeBar.fillAmount < 1 && other.transform.gameObject.tag == "Green" || strikeBar.fillAmount < 1 && other.transform.gameObject.tag == "Blue" || strikeBar.fillAmount < 1 && other.transform.gameObject.tag == "Purple")
+        {
+            Destroy(other.gameObject);
+
+            comboAm = 0;
+            shaderOff();
+            comboBar.maxValue = 10;
+            comboBar.value = 0;
+            sliderChange();
+            ScreenShakeManager.instance.CameraShake(impulseSource);
+            deathSound.Play();
+            strikeBar.fillAmount = 0;
+            SceneManager.LoadScene(0);
+        }
+        if (strikeBar.fillAmount >= 1 && other.transform.gameObject.tag == "Red"|| strikeBar.fillAmount >= 1 && other.transform.gameObject.tag == "Green" || strikeBar.fillAmount >= 1 && other.transform.gameObject.tag == "Blue" || strikeBar.fillAmount >= 1 && other.transform.gameObject.tag == "Purple")
         {
             Debug.Log("STRIKE!");
 
@@ -47,7 +67,7 @@ public class Manager : MonoBehaviour
             comboBar.value = 0;
             sliderChange();
             ScreenShakeManager.instance.CameraShake(impulseSource);
-            death.Play();
+            hitSound.Play();
             strikeBar.fillAmount = 0;
             incrementProgress(1f);
         }
@@ -60,6 +80,7 @@ public class Manager : MonoBehaviour
 
     private void Update()
     {
+           // if (_pause.GetIsPaused()) { return; }
         if (strikeBar.fillAmount < targetProgress)
         {
             strikeBar.fillAmount += fillSpeed * Time.deltaTime;

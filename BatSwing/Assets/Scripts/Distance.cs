@@ -15,7 +15,16 @@ public class Distance : MonoBehaviour
     public Material purple;
     public Material green;
     public Material white;
-
+   // public Pause _pause;
+   // private void Awake()
+   // {
+     //   _pause = FindObjectOfType<Pause>();
+    //}
+   // private void Update()
+   // {
+   //         if (_pause.GetIsPaused()) { return; }
+        
+    //}
     // Update is called once per frame
     void FixedUpdate()
     {
